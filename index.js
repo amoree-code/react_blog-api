@@ -4,8 +4,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
-app.use(cors());
 
+app.use(cors());
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 // Routes

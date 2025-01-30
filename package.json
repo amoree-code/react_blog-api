@@ -1,4 +1,13 @@
 {
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
@@ -8,15 +17,6 @@
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.7",
     "path": "^0.12.7"
-  },
-  "name": "api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "engines": {
-    "node": "22.x"
-  },
-  "scripts": {
-    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
