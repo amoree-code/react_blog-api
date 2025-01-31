@@ -5,11 +5,15 @@ const bcrypt = require("bcrypt");
 
 //  UPDATE
 router.put("/:id", async (request, response) => {
+  const exists = await User.findOne({ email: request.body.email });
+  if (exists) return response.status(400).json("Email already exists!");
+
   if (request.body.userId === request.params.id) {
     if (request.body.password) {
       const salt = await bcrypt.genSalt(10);
       request.body.password = await bcrypt.hash(request.body.password, salt);
     }
+
     try {
       const updateUser = await User.findByIdAndUpdate(
         request.params.id,

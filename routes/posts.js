@@ -7,7 +7,7 @@ router.post("/", async (request, response) => {
   const newPost = new Post(request.body);
   try {
     const sevedPost = await newPost.save();
-    response.status(200).json(sevedPost);
+    response.status(201).json(sevedPost);
   } catch (err) {
     response.status(500).json(err);
   }
@@ -42,17 +42,11 @@ router.put("/:id", async (request, response) => {
 // DELETE POST
 router.delete("/:id", async (request, response) => {
   try {
-    const post = await Post.findById(request.params.id);
-    if (post.username === request.body.username) {
-      try {
-        console.log(request.body.username);
-        await post.deleteOne();
-        response.status(200).json("post deleted successfully");
-      } catch (err) {
-        response.status(500).json("not found");
-      }
+    const post = await Post.findByIdAndDelete(request.params.id);
+    if (post) {
+      response.status(200).json(post);
     } else {
-      response.status(401).json("you can delete the post");
+      response.status(404).json("not found");
     }
   } catch (err) {
     response.status(500).json("not found");
